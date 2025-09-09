@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-from datetime import datetime
 from typing import TYPE_CHECKING, Callable
 
 from dissect.target.exceptions import UnsupportedPluginError
+from dissect.target.helpers.parsers import DateTimeParser, default_datetime_parser
 from dissect.target.helpers.record import (
     COMMON_APPLICATION_FIELDS,
     TargetRecordDescriptor,
