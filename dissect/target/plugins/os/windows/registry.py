@@ -306,7 +306,7 @@ class RegistryPlugin(Plugin):
         """Yields all keys that match the given queries.
 
         Automatically resolves CurrentVersion keys. Also flattens KeyCollections.
-        
+
         Args:
             keys: The registry key paths to query.
             ignore_regback: Whether to ignore registry backup hives (RegBack).
@@ -325,19 +325,19 @@ class RegistryPlugin(Plugin):
                     if ignore_regback and self._is_regback_key(k):
                         continue
                     yield k
-            except (RegistryKeyNotFoundError, HiveUnavailableError):  # noqa: PERF203
+            except (RegistryKeyNotFoundError, HiveUnavailableError):
                 pass
 
     def _is_regback_key(self, key: RegistryKey) -> bool:
         """Check if a registry key is from a RegBack hive."""
         if not key.hive:
             return False
-        
+
         # Check if the hive has filepath attribute and if it contains "RegBack"
         filepath = getattr(key.hive, "filepath", None)
         if filepath and hasattr(filepath, "parts"):
             return "RegBack" in filepath.parts
-        
+
         return False
 
     @internal
